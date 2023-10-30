@@ -22,6 +22,7 @@ library(downloader)
 index <- read_csv(here::here( "Index_timelapse.csv"))
 gii <- index %>%
   dplyr::select(contains("country"),contains("gii"))
+# Calculate the differences
 gii_diff <- gii %>%
   mutate(Index_Diff201019 = (gii_2019 - gii_2010))
 gii_diff_compare <- gii_diff %>%

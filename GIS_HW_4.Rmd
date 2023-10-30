@@ -21,8 +21,7 @@ library(downloader)
 # Read CSV file
 index <- read_csv(here::here( "Index_timelapse.csv"))
 gii <- index %>%
-  dplyr::select(contains("country"),contains("gii"))%>%
-  na.omit()
+  dplyr::select(contains("country"),contains("gii"))
 gii_diff <- gii %>%
   mutate(Index_Diff201019 = (gii_2019 - gii_2010))
 gii_diff_compare <- gii_diff %>%
@@ -49,8 +48,7 @@ qtm(global_index_edit)
 global_index_plot <- global_index_edit %>%
   left_join(.,
             gii_diff_compare,
-            by = c("COUNTRY" = "country")) %>%
-  na.omit
+            by = c("COUNTRY" = "country"))
 
 tmap_mode("plot")
 qtm(global_index_plot,
